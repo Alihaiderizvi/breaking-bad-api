@@ -1,18 +1,18 @@
 import React from 'react'
 
 const Pagination = ({ItemsPerPage, totalItems, paginate}) => {
-    const itemNumbers = [];
 
+    const itemNumbers = [];
     for (let i = 0; i < Math.ceil(totalItems/ItemsPerPage); i++) {
         itemNumbers.push(i)
     }
     return (
         <div className='pagination'>
             <nav>
-                <ul>
+                <ul className="pagination">
                     {itemNumbers.map((number)=>(
                         <li className='page-item' key={number}>
-                            <a onClick={()=> paginate(number)} href="!#" className="page-link"></a>
+                            <a onClick={()=> paginate(number)} href="!#" className="page-link">{number}</a>
                         </li>
                     ))}
                 </ul>

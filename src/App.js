@@ -10,11 +10,13 @@ function App() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState(''); 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [ItemsPerPage] = useState(10);
   // Pagination 
-  const indexOfLastItem = currentPage * ItemsPerPage
+  const indexOfLastItem = ItemsPerPage + currentPage * ItemsPerPage
   const indexOfFirstItem = indexOfLastItem - ItemsPerPage
+  console.log(`First Index: ${indexOfFirstItem}`)
+  console.log(`Last Index: ${indexOfLastItem}`)
   const currentItem = items.slice(indexOfFirstItem,indexOfLastItem)
 
   useEffect(() => {
@@ -27,6 +29,7 @@ function App() {
   }, [query])
 
   // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber)
   return (
     <div className='container' style={{marginTop:'3rem'}}> 
       <Header /> 

@@ -48,7 +48,8 @@ header img {
 }
 
 .search {
-  height: 100px;
+  height: 85px;
+  margin-top: -3rem;
 }
 
 input[type='text'] {

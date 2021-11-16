@@ -13,12 +13,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [ItemsPerPage] = useState(10);
   // Pagination 
-  const indexOfLastItem = ItemsPerPage + currentPage * ItemsPerPage
-  const indexOfFirstItem = indexOfLastItem - ItemsPerPage
-  console.log(`First Index: ${indexOfFirstItem}`)
-  console.log(`Last Index: ${indexOfLastItem}`)
+  const indexOfLastItem = ItemsPerPage + (currentPage * ItemsPerPage)
+  const indexOfFirstItem = indexOfLastItem - ItemsPerPage 
   const currentItem = items.slice(indexOfFirstItem,indexOfLastItem)
-
+ 
   useEffect(() => {
     const fetchItems = async () => {
       const res = await axios(`https://www.breakingbadapi.com/api/characters?name=${query}`)
@@ -34,8 +32,15 @@ function App() {
     <div className='container' style={{marginTop:'3rem'}}> 
       <Header /> 
       <Search getQuery={(q) => setQuery(q)}/>
-      <CharacterGrid items={currentItem} isLoading={isLoading}/>
-      <Pagination ItemsPerPage={ItemsPerPage} totalItems={items.length} paginate={paginate}/>
+      <CharacterGrid 
+        items={currentItem} 
+        isLoading={isLoading}
+      />
+      <Pagination 
+        ItemsPerPage={ItemsPerPage}
+        totalItems={items.length} 
+        paginate={paginate}  
+      />
     </div>
   );
 }

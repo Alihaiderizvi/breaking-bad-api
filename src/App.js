@@ -11,7 +11,6 @@ function App() {
   const [query, setQuery] = useState(''); 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  
   // Pagination 
   const indexOfLastItem = currentPage * postsPerPage
   const indexOfFirstItem = indexOfLastItem - postsPerPage
@@ -30,7 +29,7 @@ function App() {
     <div className='container' style={{marginTop:'3rem'}}> 
       <Header /> 
       <Search getQuery={(q) => setQuery(q)}/>
-      <CharacterGrid items={items} isLoading={isLoading}/>
+      <CharacterGrid items={currentItem} isLoading={isLoading}/>
     </div>
   );
 }

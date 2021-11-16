@@ -22,7 +22,7 @@ function App() {
   return (
     <> 
       <Header /> 
-      <Search/>
+      <Search getQuery={getQuery}/>
       <CharacterGrid items={items} isLoading={isLoading}/>
     </>
   );

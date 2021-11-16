@@ -4,16 +4,17 @@ import Header from './components/ui/Header';
 import CharacterGrid from './components/characters/CharacterGrid';
 import Search from './components/ui/Search';
 import './App.css'
+import Pagination from './components/Pagination';
 
 function App() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState(''); 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [ItemsPerPage] = useState(10);
   // Pagination 
-  const indexOfLastItem = currentPage * postsPerPage
-  const indexOfFirstItem = indexOfLastItem - postsPerPage
+  const indexOfLastItem = currentPage * ItemsPerPage
+  const indexOfFirstItem = indexOfLastItem - ItemsPerPage
   const currentItem = items.slice(indexOfFirstItem,indexOfLastItem)
 
   useEffect(() => {
@@ -25,11 +26,13 @@ function App() {
     fetchItems()
   }, [query])
 
+  // Change page
   return (
     <div className='container' style={{marginTop:'3rem'}}> 
       <Header /> 
       <Search getQuery={(q) => setQuery(q)}/>
       <CharacterGrid items={currentItem} isLoading={isLoading}/>
+      <Pagination ItemsPerPage={ItemsPerPage} totalItems={items.length} paginate={paginate}/>
     </div>
   );
 }

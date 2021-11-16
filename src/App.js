@@ -17,12 +17,12 @@ function App() {
       setIsLoading(false)
     }
     fetchItems()
-  }, [])
+  }, [query])
 
   return (
     <> 
       <Header /> 
-      <Search getQuery={getQuery}/>
+      <Search getQuery={(q) => setQuery(q)}/>
       <CharacterGrid items={items} isLoading={isLoading}/>
     </>
   );

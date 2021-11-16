@@ -8,8 +8,15 @@ import './App.css'
 function App() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(''); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
   
+  // Pagination 
+  const indexOfLastItem = currentPage * postsPerPage
+  const indexOfFirstItem = indexOfLastItem - postsPerPage
+  const currentItem = items.slice(indexOfFirstItem,indexOfLastItem)
+
   useEffect(() => {
     const fetchItems = async () => {
       const res = await axios(`https://www.breakingbadapi.com/api/characters?name=${query}`)
